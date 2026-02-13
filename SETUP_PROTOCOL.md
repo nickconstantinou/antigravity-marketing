@@ -6,7 +6,7 @@
 ## 1. Environment Readiness (The Pre-Flight)
 Before running the installer, ensure the workspace isn't "empty." The `shadcn` CLI requires a detectable framework.
 
-- [x] **Check Node Version**: Minimum `v20.0.0` is now supported (v22.0.0+ recommended for stability).
+- [x] **Check Node Version**: Minimum `v22.0.0` is now required for stability and MCP compatibility.
 - [x] **Framework Foundation**: Foundation files (`tsconfig.json`, `tailwind.config.ts`, `lib/utils.ts`) are now pre-included in the template.
 
 ## 2. Execution Protocol (The One-Click Install)

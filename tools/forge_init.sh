@@ -27,7 +27,13 @@ echo -e "${NC}"
 
 echo -e "${CYAN}[1/4] Checking System Requirements...${NC}"
 if ! command -v node &> /dev/null; then
-    echo -e "${RED}Error: Node.js is not installed. Please install v20+.${NC}"
+    echo -e "${RED}Error: Node.js is not installed. Please install v22+.${NC}"
+    exit 1
+fi
+
+NODE_VERSION=$(node -v | cut -d 'v' -f 2 | cut -d '.' -f 1)
+if [ "$NODE_VERSION" -lt 22 ]; then
+    echo -e "${RED}Error: Node.js version must be v22 or higher. Current: $(node -v)${NC}"
     exit 1
 fi
 echo -e "${GREEN}✓ Node.js found: $(node -v)${NC}"
@@ -111,6 +117,13 @@ fi
 if [ ! -d "app" ]; then
     mkdir -p app
     echo -e "${BLUE}Creating app directory...${NC}"
+fi
+
+# Ensure AGENTS.md and .AGENTS.md are synchronized
+if [ -f "AGENTS.md" ] && [ ! -f ".AGENTS.md" ]; then
+    ln -s AGENTS.md .AGENTS.md
+elif [ -f ".AGENTS.md" ] && [ ! -f "AGENTS.md" ]; then
+    ln -s .AGENTS.md AGENTS.md
 fi
 
 # Use the new shadcn CLI defaults - skip interactive and force if needed
