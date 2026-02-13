@@ -11,7 +11,10 @@ cd antigravity-marketing
 ```
 
 ### 2. Run the Forge Installer
-To set up the full environment (Dependencies, MCP Servers, and UI), run the branded installer:
+To set up the full environment (Dependencies, MCP Servers, and UI), run the branded installer. 
+
+> [!IMPORTANT]
+> If you are an **AI Agent**, first read [SETUP_PROTOCOL.md](./SETUP_PROTOCOL.md) for pre-flight requirements and verified package patterns.
 
 ```bash
 chmod +x tools/forge_init.sh

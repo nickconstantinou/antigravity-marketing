@@ -37,24 +37,41 @@ npm install --quiet
 echo -e "${GREEN}✓ Base dependencies installed.${NC}"
 
 echo -e "${CYAN}[3/4] Ignition: Deploying MCP Servers...${NC}"
-# Official MCPs
-npm install -g @modelcontextprotocol/server-playwright \
-               @glif/mcp-server \
-               @modelcontextprotocol/server-replicate \
-               @modelcontextprotocol/server-exa \
-               @modelcontextprotocol/server-firecrawl --quiet
-echo -e "${GREEN}✓ Glif, Replicate, Playwright, Exa, and Firecrawl MCPs ready.${NC}"
+# Official/Verified MCPs
+npm install -g @glifxyz/glif-mcp-server \
+               replicate-mcp \
+               exa-mcp-server \
+               firecrawl-mcp --quiet || echo -e "${RED}Warning: Some MCP servers could not be installed globally. This is expected if they are not on the public registry. They can still be run via npx.${NC}"
+echo -e "${GREEN}✓ MCP server check complete.${NC}"
 
 echo -e "${CYAN}[4/4] Aesthetics: Scaffolding UI...${NC}"
-# Use the new shadcn CLI instead of deprecated shadcn-ui
-npx shadcn@latest init -y --style default --color slate --typescript --rsc
+# Pre-flight: Ensure Next.js is "detectable"
+if [ ! -f "next.config.mjs" ] && [ ! -f "next.config.js" ]; then
+    echo -e "${BLUE}Scaffolding minimal Next.js config...${NC}"
+    echo "/** @type {import('next').NextConfig} */" > next.config.mjs
+    echo "const nextConfig = {};" >> next.config.mjs
+    echo "export default nextConfig;" >> next.config.mjs
+fi
+
+if [ ! -d "app" ]; then
+    mkdir -p app
+    echo -e "${BLUE}Creating app directory...${NC}"
+fi
+
+# Use the new shadcn CLI defaults
+npx shadcn@latest init -d
 echo -e "${GREEN}✓ Shadcn UI initialized.${NC}"
+
+if [ ! -f ".env.local" ]; then
+    echo -e "${BLUE}Creating .env.local from example...${NC}"
+    cp .env.example .env.local 2>/dev/null || touch .env.local
+fi
 
 echo -e "\n${PURPLE}==================================================${NC}"
 echo -e "${GREEN}FORGE INITIALIZATION COMPLETE${NC}"
 echo -e "${PURPLE}==================================================${NC}"
 echo -e "Next Steps:"
-echo -e "1. Edit ${BLUE}.agent/rules/marketing-logic.md${NC} to define your voice."
-echo -e "2. Run ${BLUE}@launch-vibe \"Your Product\"${NC} to start your first campaign."
-echo -e "3. Check ${BLUE}README.md${NC} for full capability docs."
+echo -e "1. Fill in your API keys in ${BLUE}.env.local${NC}"
+echo -e "2. Edit ${BLUE}.agent/rules/marketing-logic.md${NC} to define your voice."
+echo -e "3. Run ${BLUE}@launch-vibe \"Your Product\"${NC} to start your first campaign."
 echo -e "${PURPLE}==================================================${NC}\n"
