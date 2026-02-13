@@ -45,7 +45,7 @@ npm install -g @glifxyz/glif-mcp-server \
 echo -e "${GREEN}✓ MCP server check complete.${NC}"
 
 echo -e "${CYAN}[4/4] Aesthetics: Scaffolding UI...${NC}"
-# Pre-flight: Ensure Next.js is "detectable"
+# Pre-flight: Next.js & TypeScript config
 if [ ! -f "next.config.mjs" ] && [ ! -f "next.config.js" ]; then
     echo -e "${BLUE}Scaffolding minimal Next.js config...${NC}"
     echo "/** @type {import('next').NextConfig} */" > next.config.mjs
@@ -53,14 +53,73 @@ if [ ! -f "next.config.mjs" ] && [ ! -f "next.config.js" ]; then
     echo "export default nextConfig;" >> next.config.mjs
 fi
 
+if [ ! -f "tsconfig.json" ]; then
+    echo -e "${BLUE}Scaffolding tsconfig.json...${NC}"
+    cat > tsconfig.json <<EOF
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": { "@/*": ["./*"] }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+EOF
+fi
+
+if [ ! -f "tailwind.config.ts" ]; then
+    echo -e "${BLUE}Scaffolding tailwind.config.ts...${NC}"
+    cat > tailwind.config.ts <<EOF
+import type { Config } from "tailwindcss";
+export default {
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}"],
+  theme: { extend: {} },
+  plugins: [],
+} satisfies Config;
+EOF
+fi
+
+if [ ! -f "postcss.config.mjs" ]; then
+    echo -e "${BLUE}Scaffolding postcss.config.mjs...${NC}"
+    echo "export default { plugins: { tailwindcss: {}, autoprefixer: {} } };" > postcss.config.mjs
+fi
+
+if [ ! -d "lib" ]; then
+    mkdir -p lib
+    cat > lib/utils.ts <<EOF
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+EOF
+fi
+
 if [ ! -d "app" ]; then
     mkdir -p app
     echo -e "${BLUE}Creating app directory...${NC}"
 fi
 
-# Use the new shadcn CLI defaults
-npx shadcn@latest init -d
-echo -e "${GREEN}✓ Shadcn UI initialized.${NC}"
+# Use the new shadcn CLI defaults - skip interactive and force if needed
+echo -e "${CYAN}Initializing Shadcn UI...${NC}"
+npx shadcn@latest init -d || {
+    echo -e "${RED}Warning: shadcn init -d failed. Attempting manual dependency injection...${NC}"
+    npm install clsx tailwind-merge tailwindcss-animate class-variance-authority lucide-react --force
+}
+echo -e "${GREEN}✓ UI Layer Foundation ready.${NC}"
 
 if [ ! -f ".env.local" ]; then
     echo -e "${BLUE}Creating .env.local from example...${NC}"

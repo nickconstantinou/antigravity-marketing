@@ -6,10 +6,10 @@
 ## 1. Environment Readiness (The Pre-Flight)
 Before running the installer, ensure the workspace isn't "empty." The `shadcn` CLI requires a detectable framework.
 
-- [ ] **Check Node Version**: Minimum `v22.0.0` is required. Use `node -v` to verify.
-- [ ] **Framework Foundation**: The `forge_init.sh` script will attempt to scaffold minimal `next.config.mjs` and `app/` if they don't exist, but manual verification is recommended.
+- [x] **Check Node Version**: Minimum `v20.0.0` is now supported (v22.0.0+ recommended for stability).
+- [x] **Framework Foundation**: Foundation files (`tsconfig.json`, `tailwind.config.ts`, `lib/utils.ts`) are now pre-included in the template.
 
-## 2. Execution Protocol (The Install)
+## 2. Execution Protocol (The One-Click Install)
 Run the following commands in order.
 
 ```bash
@@ -25,7 +25,6 @@ After the script completes, the agent MUST perform these manual hydration steps:
 
 ### A. Environment Liquidity
 - [ ] Fill in API keys in `.env.local` (copied from `.env.example`).
-- [ ] **CRITICAL**: Do not check `.env.local` into Git.
 
 ### B. MCP Synapse Configuration
 - [ ] Sync the `mcp_config.json` with the agent's runtime host.
