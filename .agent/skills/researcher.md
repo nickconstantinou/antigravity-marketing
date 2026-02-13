@@ -11,18 +11,17 @@ version: 1.1.0
 To move past surface-level search results and identify "The 6 Circles of Relevance." The agent must find raw human pain points, unedited reviews, and cultural momentum shifts.
 
 ## Instructions
-1.  **Reddit Deep-Dive:** Use `browser_navigate` to visit subreddits related to the niche. Search for "Is it just me or," "Hate it when," and "Alternative to [Competitor]."
-2.  **X (Twitter) Sentiment:** Search for recent viral threads in the niche. Capture screenshots of high-engagement replies to understand the current "lexicon."
-3.  **The 6 Circles Map:** Based on the research, populate a `research/market_map.json` following these circles:
-    * *Circle 1:* Direct Problem (The core "itch").
-    * *Circle 2:* Immediate Alternatives (The current "scratch").
-    * *Circle 6:* Tangential Interests (What else are these people buying?).
+1.  **Neural Sweep (Exa):** Use `exa_search` to find high-signal technical blogs, niche newsletters, and "founder-led" content. This replaces shallow keyword searches.
+2.  **Reddit/X Deep-Dive (Firecrawl):** Use `firecrawl_scrape` to ingest entire threads where users are complaining about competitors. 
+3.  **Sentiment Mapping:** Extract raw human pain points, unedited reviews, and cultural momentum shifts from the scraped Markdown.
 4.  **Vibe Extraction:** Do not just summarize text. Describe the *emotional state* of the audience. Are they angry? Cynical? Hopeful?
+5.  **Output:** Save raw observations and screenshots to `research/raw_intel_[topic].json`.
 
 ## Constraints
+* **Signal > Volume:** Use Exa's `category: "tweet"` or `category: "paper"` filters to find high-authority sources.
 * **No Fluff:** Do not report "The market is growing." Report "Users are pissed because [Feature X] stopped working on Tuesday."
 * **Privacy First:** Do not scrape or store PII (Personally Identifiable Information).
-* **Visual Evidence:** Always take a `browser_screenshot` of the most critical discovery for the human to review in the Artifacts tab.
+* **Visual Evidence:** Use `browser_screenshot` (Playwright) if a visual discovery (e.g., a specific UI bug on a competitor site) is found.
 
 ## Example Workflow
 > "@researcher, find out why people are moving away from [Competitor] on Reddit and suggest a positioning angle."

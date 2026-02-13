@@ -18,11 +18,12 @@ To transform the `positioning_matrix.json` into a live, high-performance landing
 * **Icons:** Lucide-react (keep it minimal).
 
 ## 3. The "Vibe-First" Build Process
-1.  **Ingest Strategy:** Read `strategy/positioning_matrix.json` to set the tone.
-2.  **Scaffold Layout:** Create `app/page.tsx`. Use a "Bento Box" or "Clean Type" layout—avoid 2015-style hero banners.
+1.  **Ingest Strategy:** Read `strategy/positioning_matrix.json` to set the tone and `strategy/creative_brief.json` for visual styles.
+2.  **Scaffold Layout:** Create `app/page.tsx`. Use the aesthetic defined in the brief (e.g., Neo-Brutalist, Lux-Minimal).
 3.  **Inject Voice:** Pull copy snippets from the `core_hook` and `the_vibe`. 
-4.  **Visual Friction Check:** Ensure the "Antagonist" (the problem we're solving) is visually distinct (e.g., darker sections or gritty typography).
-5.  **CTA Optimization:** The button must not say "Submit." It must reflect the "Fast-Track" or "New Identity" angle (e.g., "Join the Resistance" or "Fix my [Problem]").
+4.  **Apply Tones:** Use the color palette and typography from `creative_brief.json`.
+5.  **Visual Friction Check:** Ensure the "Antagonist" (the problem we're solving) is visually distinct (e.g., darker sections or gritty typography).
+6.  **CTA Optimization:** The button must not say "Submit." It must reflect the "Fast-Track" or "New Identity" angle (e.g., "Join the Resistance" or "Fix my [Problem]").
 
 ## 4. Automation Rules
 * **Responsive by Default:** Every build must be mobile-first.

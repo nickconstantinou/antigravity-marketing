@@ -6,7 +6,7 @@ version: 1.4.0
 dependencies: [marketing-logic, vibe-architect]
 ---
 
-# Vibe Critic Skill
+# Skill 13: Vibe Critic
 
 ## 1. Goal
 To protect the brand from "Mid-ness." The Critic’s job is to find where the AI became lazy, corporate, or incoherent.
@@ -19,7 +19,8 @@ Search for "zombie words" (solutions, leading, innovative, empowered).
 * **Action:** If found, highlight the line and demand a "human-first" rewrite.
 
 ### B. The "Visual Friction" Audit
-Use `browser_screenshot` to analyze the landing page layout.
+1.  **Ingest (Firecrawl):** Use `firecrawl_scrape` to pull the competitor's landing page as Markdown.
+2.  **Visual Sweep (Playwright):** Use `browser_screenshot` to analyze the actual render.
 * **Check:** Is the "Hero" section too cluttered? Is the call-to-action (CTA) buried?
 * **Constraint:** If it looks like a generic Shopify template, the Critic must command the Architect to "Add 20% more brutalist aesthetic."
 

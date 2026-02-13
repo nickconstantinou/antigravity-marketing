@@ -14,27 +14,32 @@ We are moving away from manual campaign creation. We use **Skills** (specialized
 Use these "Macros" to trigger complex multi-agent workflows.
 
 ### Research & Strategy
-*   `@research [topic]`: Triggers `market-researcher` skill (Skill 03) to crawl Reddit/X/Web and outputs `research/market_map.json`.
-*   `@positioning [topic]`: Triggers `positioning-architect` skill (Skill 02) to build a `strategy/positioning_matrix.json` from the research.
-*   `@vibe-audit [url]`: Uses Playwright to screenshot a competitor's site and run a critique against `marketing-logic.md`.
+*   `@research [topic]`: Triggers `researcher.md` (Skill 11) to crawl Reddit/X/Web and outputs `research/raw_intel.json`.
+*   `@positioning [topic]`: Triggers `positioning.md` (Skill 02) to build a `strategy/positioning_matrix.json`.
+*   `@creative [angle]`: Triggers `creative-strategist.md` (Skill 11) to brainstorm hooks and angles.
+*   `@audit [url]`: Triggers `vibe-critic.md` (Skill 13) to screenshot a competitor's site and run a critique.
+*   `@keyword [topic]`: Triggers `keyword-research.md` (Skill 03) to find high-opportunity keywords.
 
 ### Execution (The Build)
-*   `@architect [angle]`: Triggers `vibe-architect` skill (Infrastructure) to scaffold a Next.js landing page based on the positioning matrix.
-*   `@write-copy [type]`: Triggers `direct-response` (Skill 05) or `seo-content` (Skill 06) to draft text assets.
+*   `@architect [angle]`: Triggers `vibe-architect.md` (Skill 14) to scaffold a Next.js landing page.
+*   `@copy-direct [type]`: Triggers `direct-response.md` (Skill 05) for sales copy.
+*   `@copy-seo [type]`: Triggers `seo-content.md` (Skill 06) for education content.
+*   `@visuals [prompt]`: Triggers `visual-producer.md` (Skill 12) to generate assets.
+*   `@email [topic]`: Triggers `email-sequences.md` (Skill 08) for drip campaigns.
+*   `@newsletter [topic]`: Triggers `newsletter.md` (Skill 07) for broadcast.
+*   `@lead-magnet [topic]`: Triggers `lead-magnet.md` (Skill 04) to structure assets.
 
 ### Distribution
-*   `@atomize [file]`: Triggers `content-atomizer` (Skill 09) to turn one artifact (e.g., a landing page) into 15+ social posts.
+*   `@atomize [file]`: Triggers `content-atomizer.md` (Skill 09) to turn one artifact into 15+ social posts.
 
 ### The Loop (Full Campaign)
 *   `@launch-vibe [topic]`:
-    1.  Runs `@research` to find the "Salt."
-    2.  Runs `@positioning` to find the "Hook."
-    3.  Runs `@architect` to build the Page.
-    4.  Runs `@vibe-check` for a final Critique.
+    1.  Runs `@research` -> `@positioning` -> `@architect` -> `@audit`.
+    2.  Orchestrated by `orchestrator.md` (Skill 10) and `vibe_launch.md` workflow.
 
 ## Infrastructure Status
 - **Rules:** `.agent/rules/marketing-logic.md` (Active)
-- **Skills:** `.agent/skills/` (12 Skills Loaded)
+- **Skills:** `.agent/skills/` (15 Skills Loaded)
 - **Workflows:** `.agent/workflows/` (Active)
 
 ---
