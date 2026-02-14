@@ -6,7 +6,7 @@ Welcome to the **Vibe Marketing Forge**. This is an agentic workspace designed f
 
 ### 1. Clone & Enter
 ```bash
-git clone https://github.com/your-username/antigravity-marketing.git
+git clone https://github.com/nickconstantinou/antigravity-marketing.git
 cd antigravity-marketing
 ```
 
@@ -65,5 +65,4 @@ For advanced commands and multi-agent orchestration details, see [AGENTS.md](./A
 
 ---
 
-## ⚖️ Strategic Assessment
-For a deep dive into why we use MCP over direct APIs and our supplemental tool choices, see [assessments.md](./assessments.md).
+

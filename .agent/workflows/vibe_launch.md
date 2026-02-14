@@ -17,8 +17,10 @@ version: 2.0.0
 4.  **Process:** Use `creative-strategist.md` (Skill 11) to define the Vibe (Colors, Fonts).
 
 ## 3. Execution Phase (The Build)
-1.  **Command:** `@visuals`
-2.  **Process:** Use `visual-producer.md` (Skill 12) to generate assets based on the Vibe.
+1.  **Command:** `@design-system`
+2.  **Process:** Use `frontend-design` to translate `creative_brief.json` into `tailwind.config.ts` and `globals.css`.
+3.  **Command:** `@visuals`
+4.  **Process:** Use `visual-producer.md` (Skill 12) to generate assets based on the Vibe.
 3.  **Command:** `@copy-direct`
 4.  **Process:** Use `direct-response.md` to write the headlines using the Positioning Angle.
 5.  **Command:** `@architect`
@@ -27,7 +29,9 @@ version: 2.0.0
 ## 4. Review Phase
 1.  **Command:** `@audit`
 2.  **Process:** Use `vibe-critic.md` to run the "2AM Bar Test" from `brand-voice.md`.
-3.  **Refine:** Iterate until Vibe Score > 90.
+3.  **Command:** `@design-qa`
+4.  **Process:** Use `frontend-design` to analyze visual quality and "Vibe" alignment.
+5.  **Refine:** Iterate until Vibe Score > 90.
 
 ## 5. Deployment & Distribution
 1.  **Manual:** Deploy to Vercel/Netlify.
