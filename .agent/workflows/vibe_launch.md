@@ -1,43 +1,46 @@
 ---
-description: Launch a Vibe Marketing campaign from research to deployment.
+description: Launch a Vibe Marketing campaign from research to deployment (V2.0).
 version: 2.0.0
 ---
 
-# Vibe Launch Protocol
+# Vibe Launch Protocol (V2.0)
 
-## 1. Research Phase
+**Prerequisite:** A "Launch Project" must exist in `launches/active/[project_name]/`.
+
+## 1. Research Phase (The Source)
 1.  **Command:** `@research [topic]`
-2.  **Process:** Use `deep_research/SKILL.md` (Workflow) to find the "Bleeding Neck" problem.
-3.  **Check:** Does `research/[topic]_brief/SKILL.md` exist?
+2.  **Process:** Use `researcher/SKILL.md`.
+3.  **Output:** Save to `artifacts/research/raw_intel.json`.
+4.  **Vibe Guardian:** Inject `artifacts/research/raw_intel.json` into `launch_ticket.md`.
 
 ## 2. Strategy Phase
-1.  **Command:** `@positioning`
-2.  **Process:** Use `positioning/SKILL.md` (Skill 02) to define the Angle.
-3.  **Command:** `@creative`
-4.  **Process:** Use `creative-strategist/SKILL.md` (Skill 11) to define the Vibe (Colors, Fonts).
+1.  **Command:** `@positioning` (Skill 02).
+2.  **Command:** `@creative` (Skill 11).
+3.  **Output:** `artifacts/strategy/positioning_matrix.json` & `artifacts/strategy/creative_brief.json`.
 
-## 3. Execution Phase (The Build)
-1.  **Command:** `@design-system`
-2.  **Process:** Use `frontend-design/SKILL.md` to translate `creative_brief.json` into `tailwind.config.ts` and `globals.css`.
-3.  **Command:** `@visuals`
-4.  **Process:** Use `visual-producer/SKILL.md` (Skill 12) to generate assets based on the Vibe.
-3.  **Command:** `@copy-direct`
-4.  **Process:** Use `direct-response/SKILL.md` to write the headlines using the Positioning Angle.
-5.  **Command:** `@architect`
-6.  **Process:** Scaffold the page.
+## 3. Offer Phase (The Grand Slam)
+1.  **Command:** `@offer-architect` (Skill: offer-architect).
+2.  **Input:** `artifacts/research/raw_intel.json`.
+3.  **Output:** `artifacts/strategy/offer_stack.json`.
 
-## 4. Review Phase
-1.  **Command:** `@audit`
-2.  **Process:** Use `vibe-critic/SKILL.md` to run the "2AM Bar Test" from `brand-voice/SKILL.md`.
-3.  **Command:** `@design-qa`
-4.  **Process:** Use `frontend-design/SKILL.md` to analyze visual quality and "Vibe" alignment.
-5.  **Refine:** Iterate until Vibe Score > 90.
+## 4. Execution Phase (Parallel Build)
+**Context:** ALL agents must read `artifacts/research/raw_intel.json` AND `artifacts/strategy/offer_stack.json`.
+1.  **Thread A (Copy):** `@copy-direct` saves to `artifacts/copy/headlines.md`.
+2.  **Thread B (Visuals):** `@visuals` saves to `artifacts/assets/`.
+3.  **Thread C (Design):** `@design-system` saves to `artifacts/design/`.
+4.  **Convergence:** `@architect` scaffolds the Next.js app using artifacts.
 
-## 5. Deployment & Distribution
-1.  **Manual:** Deploy to Vercel/Netlify.
-2.  **Command:** `@atomize`
-3.  **Process:** Use `content-atomizer/SKILL.md` to turn the landing page into:
-    *   5 Tweets (Thread).
-    *   2 LinkedIn Posts.
-    *   1 Newsletter (`newsletter/SKILL.md`).
-    *   1 Email Sequence (`email-sequences/SKILL.md`).
+## 5. Audit & Deploy
+1.  **Command:** `@deploy-staging` (Skill: deploy-manager).
+2.  **Output:** Staging URL.
+3.  **Command:** `@audit [staging_url]`.
+4.  **Refine:** If Vibe Score < 90, loops back.
+
+## 6. Distribution (The Megaphone)
+1.  **Command:** `@deploy-prod`.
+2.  **Command:** `@atomize`.
+3.  **Output:** Save posts to `artifacts/dist/social_posts.md`.
+
+## 7. The Echo Loop (Feedback)
+1.  **Command:** `@retro`.
+2.  **Action:** Updates `launch_ticket.md` with "Vibe Drift" analysis.

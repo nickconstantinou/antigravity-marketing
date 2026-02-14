@@ -18,12 +18,15 @@ To transform the `positioning_matrix.json` into a live, high-performance landing
 * **Icons:** Lucide-react (keep it minimal).
 
 ## 3. The "Vibe-First" Build Process
-1.  **Ingest Strategy:** Read `strategy/positioning_matrix.json` to set the tone and `strategy/creative_brief.json` for visual styles.
-2.  **Scaffold Layout:** Create `app/page.tsx`. Use the aesthetic defined in the brief (e.g., Neo-Brutalist, Lux-Minimal).
+1.  **Ingest Strategy:** Read `strategy/positioning_matrix.json` and `strategy/offer_stack.json`.
+2.  **Scaffold Layout:** Create `app/page.tsx`. Use the aesthetic defined in the brief.
 3.  **Inject Voice:** Pull copy snippets from the `core_hook` and `the_vibe`. 
-4.  **Apply Tones:** Use the color palette and typography from `creative_brief.json`.
-5.  **Visual Friction Check:** Ensure the "Antagonist" (the problem we're solving) is visually distinct (e.g., darker sections or gritty typography).
-6.  **CTA Optimization:** The button must not say "Submit." It must reflect the "Fast-Track" or "New Identity" angle (e.g., "Join the Resistance" or "Fix my [Problem]").
+4.  **Inject Offer:** 
+    - **Pricing Section:** Must be clear. No "Contact Us" for prices < $500.
+    - **Guarantee Seal:** Place near the CTA.
+5.  **Apply Tones:** Use the color palette and typography from `creative_brief.json`.
+6.  **Visual Friction Check:** Ensure the "Antagonist" is visually distinct.
+7.  **CTA Optimization:** The button must reflect the "Fast-Track" angle (e.g., "Join the Resistance").
 
 ## 4. Automation Rules
 * **Responsive by Default:** Every build must be mobile-first.

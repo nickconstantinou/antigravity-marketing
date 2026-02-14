@@ -10,7 +10,11 @@ frameworks: [PAS, AIDA, QUEST]
 
 **Goal:** Get the click. Get the sale. Get the email. No mercy.
 
-## 1. Key Frameworks
+## 1. Input Data
+- **Source:** `strategy/offer_stack.json` (Price, Guarantee, Bonuses).
+- **Source:** `strategy/positioning_matrix.json` (Angle).
+
+## 2. Key Frameworks
 
 ### A. PAS (Problem - Agitation - Solution) - *The Standard*
 1.  **Problem:** State the pain clearly. "Your open rates are dying."
